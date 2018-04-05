@@ -3,77 +3,6 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-class Employee implements Comparable {
-    private String name;
-    private String surname;
-    private String status;
-    private int profit;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getProfit() {
-        return profit;
-    }
-
-    public void setProfit(int profit) {
-        this.profit = profit;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-
-        if (o instanceof Employee) {
-            Employee second = (Employee) o;
-            if ((second.getSurname().compareToIgnoreCase(this.surname) > 0) && (second.getProfit() > this.profit))
-                return -1;
-            if ((second.getSurname().compareToIgnoreCase(this.surname) < 0) && (second.getProfit() < this.profit))
-                return 1;
-            if ((second.getSurname().compareToIgnoreCase(this.surname) > 0) && (second.getProfit() > this.profit))
-                return -1;
-            if ((second.getSurname().compareToIgnoreCase(this.surname) < 0) && (second.getProfit() < this.profit))
-                return 1;
-
-            if (second.getProfit() == this.profit) {
-                if (second.getSurname().compareToIgnoreCase(this.surname) > 0)
-                    return -1;
-                if (second.getSurname().compareToIgnoreCase(this.surname) < 0)
-                    return 1;
-            }
-
-            if (second.getSurname().compareToIgnoreCase(this.surname) == 0) {
-                if (second.getProfit() > this.profit)
-                    return -1;
-                if (second.getProfit() < this.profit)
-                    return 1;
-            }
-        }
-        return 0;
-    }
-}
-
 public class Main {
     static Scanner in = new Scanner(System.in);
 
@@ -104,38 +33,52 @@ public class Main {
     }
 
     static void fill(ArrayList<Employee> list) {
-        boolean end = true;
-        while (end) {
+        while (true) {
             Employee emp = new Employee();
             System.out.println("Введите имя сотрудника : ");
             emp.setName(in.next());
             System.out.println("Введите фамилию сотрудника : ");
             emp.setSurname(in.next());
+            in.nextLine();
             System.out.println("Введите должность сотрудника : ");
-            emp.setStatus(in.next());
+            String a = in.nextLine();
+            while(!Rank.isRankExits(a)) {
+                System.out.println("Такой должности нет " + a);
+                a = in.nextLine();
+            }
+            emp.setStatus(Rank.retRank(a));
             System.out.println("Введите зарплату сотрудника : ");
             emp.setProfit(in.nextInt());
             list.add(emp);
             System.out.println("Завершить заполнение ?");
             String str = in.next();
-            if (str.charAt(0) == 'Д') end = !end;
+            while (str.charAt(0) != 'Д' && str.charAt(0) != 'Н') {
+                System.out.println("Введите другую букву(Д/Н)");
+                str = in.next();
+            }
+            if (str.charAt(0) == 'Д') break;
         }
     }
 
     static void show(ArrayList<Employee> list) {
         int i = 1;
         for (Employee element : list) {
-            System.out.println("Данные " + (i++) + " работника :\n\t" + element.getName() + " " + element.getSurname() + " " + element.getStatus() + " " + element.getProfit());
+            System.out.println("Данные " + (i++) + " работника :\n\t" + element.getName() + " " + element.getSurname() + " " + element.getStatus().getName() + " " + element.getProfit());
         }
     }
 
     static void search(ArrayList<Employee> list) {
         int i = 1;
         System.out.println("Введите название должности");
-        String str = in.next();
+        in.nextLine();
+        String a = in.nextLine();
+        while(!Rank.isRankExits(a)) {
+            System.out.println("Такой должности нет " + a);
+            a = in.nextLine();
+        }
         for (Employee element : list) {
-            if (element.getStatus().equals(str))
-                System.out.println("Данные " + (i++) + " работника, на данной сложности :\n\t" + element.getName() + " " + element.getSurname() + " " + element.getStatus() + " " + element.getProfit());
+            if (element.getStatus() == Rank.retRank(a))
+                System.out.println("Данные " + (i++) + " работника, на данной сложности :\n\t" + element.getName() + " " + element.getSurname() + " " + element.getStatus().getName() + " " + element.getProfit());
         }
         if (i == 1) System.out.println("Сотрудников на данной должности нет");
     }
