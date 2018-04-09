@@ -4,14 +4,16 @@ import java.util.Scanner;
 
 public class Complex {
     private double x, y;
-    public Complex(){
+
+    public Complex() {
 
     }
-    public Complex(String str){
+
+    public Complex(String str) {
         reset(str);
     }
 
-    private void reset(String str){
+    private void reset(String str) {
         int i = 0;
         char arr[] = str.toCharArray();
         String strb = "";
@@ -20,10 +22,11 @@ public class Complex {
                 strb += arr[i];
             i++;
         }
-        if (arr[i] == '+')
-            x = Double.parseDouble(strb);
-        else
-            x = -Double.parseDouble(strb);
+        char symbol = arr[i];
+//        if (symbol == '+')
+        x = Double.parseDouble(strb);
+//        else
+//            x = -Double.parseDouble(strb);
 
         i++;
         strb = "";
@@ -33,7 +36,11 @@ public class Complex {
                 strb += arr[i];
             i++;
         }
-        y = Double.parseDouble(strb);
+        if (strb != "")
+            if (symbol == '+')
+                y = Double.parseDouble(strb);
+            else
+                y = -Double.parseDouble(strb);
 
     }
 
@@ -53,28 +60,35 @@ public class Complex {
         this.y = y;
     }
 
-    public Complex add(Complex second){
+    public Complex add(Complex second) {
         Complex res = new Complex();
         res.setX(x + second.getX());
         res.setY(y + second.getY());
         return res;
     }
 
-    public Complex dif(Complex second){
+    public Complex dif(Complex second) {
         Complex res = new Complex();
         res.setX(x - second.getX());
         res.setY(y - second.getY());
         return res;
     }
 
-    public Complex mul(Complex second){
+    public Complex mul(Complex second) {
         Complex res = new Complex();
-        res.setX(x*second.getX() - y*second.getY());
-        res.setY(x*second.getY() + y*second.getX());
+        res.setX(x * second.getX() - y * second.getY());
+        res.setY(x * second.getY() + y * second.getX());
         return res;
     }
 
-    public String toString(){
-        return this.x + "+" + this.y + "i";
+    public String toString() {
+        if (this.x == 0)
+            return this.y + "i";
+        if (this.y == 0)
+            return this.x + "";
+        if (this.y > 0)
+            return this.x + "+" + this.y + "i";
+        else
+            return this.x + "-" + Math.abs(this.y) + "i";
     }
 }
