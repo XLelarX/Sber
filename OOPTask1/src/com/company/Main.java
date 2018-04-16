@@ -4,94 +4,125 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner in = new Scanner(System.in);
+    private static final String INPUT_EMPLOYEE_NAME = "Введите имя сотрудника : ";
+    private static final String INPUT_EMPLOYEE_SURNAME = "Введите фамилию сотрудника : ";
+    private static final String INPUT_EMPLOYEE_RANK = "Введите должность сотрудника : ";
+    private static final String INPUT_EMPLOYEE_PROFIT = "Введите зарплату сотрудника : ";
+    private static final String INPUT_ENDING_CHAR = "Завершить заполнение ?(Д/Н)";
+    private static final String INPUT_NEW_ENDING_CHAR = "Введите другую букву(Д/Н)";
+    private static final String NOT_RANK = "Такой должности нет ";
+    private static final String COMMANDS_OF_MENU = "Введите номер команды : \n1.Заполнение контейнера с клавиатуры\n2.Вывод информации о сотрудниках на экран\n3.Поиск сотрудников, состоящих на заданной должности\n4.Сортировка списка сотрудников по полю фамилия и по полю зарплата";
+    private static final String INFORMATION_ABOUT_EMPLOYEE = "Данные работника :\n\t";
+    private static final String NO_EMPLOYEES_ON_THIS_RANK = "Сотрудников на данной должности нет";
+
+    private static Scanner input = new Scanner(System.in);
+    private static ArrayList<Employee> listOfEmployees = new ArrayList<>();
+    private static boolean isNotStop = true;
 
     public static void main(String[] args) {
-        ArrayList<Employee> list = new ArrayList<Employee>();
-        while (true) {
-            menu();
-            int a = in.nextInt();
-            switch (a) {
-                case 1:
-                    fill(list);
-                    break;
-                case 2:
-                    show(list);
-                    break;
-                case 3:
-                    search(list);
-                    break;
-                case 4:
-                    sort(list);
-                    break;
-            }
+        while (isNotStop) {
+            showMenu();
+            doCommand();
         }
     }
 
-    static void menu() {
-        System.out.println("Введите номер команды : \n1.Заполнение контейнера с клавиатуры\n2.Вывод информации о сотрудниках на экран\n3.Поиск сотрудников, состоящих на заданной должности\n4.Сортировка списка сотрудников по полю фамилия и по полю зарплата");
-    }
-
-    static void fill(ArrayList<Employee> list) {
-        while (true) {
-            Employee emp = new Employee();
-            System.out.println("Введите имя сотрудника : ");
-            emp.setName(in.next());
-            System.out.println("Введите фамилию сотрудника : ");
-            emp.setSurname(in.next());
-            in.nextLine();
-            System.out.println("Введите должность сотрудника : ");
-            String a = in.nextLine();
-            while(!Rank.isRankExits(a)) {
-                System.out.println("Такой должности нет " + a);
-                a = in.nextLine();
-            }
-            emp.setStatus(Rank.retRank(a));
-            System.out.println("Введите зарплату сотрудника : ");
-            emp.setProfit(in.nextInt());
-            list.add(emp);
-            System.out.println("Завершить заполнение ?");
-            String str = in.next();
-            while (str.charAt(0) != 'Д' && str.charAt(0) != 'Н') {
-                System.out.println("Введите другую букву(Д/Н)");
-                str = in.next();
-            }
-            if (str.charAt(0) == 'Д') break;
+    private static void doCommand() {
+        int numberOfCommand = input.nextInt();
+        switch (numberOfCommand) {
+            case 1:
+                fill();
+                break;
+            case 2:
+                show();
+                break;
+            case 3:
+                checkIfEmployeeExists();
+                break;
+            case 4:
+                sort();
+                break;
+            case 5:
+                isNotStop = false;
+                break;
         }
     }
 
-    static void show(ArrayList<Employee> list) {
+    private static void showMenu() {
+        System.out.println(COMMANDS_OF_MENU);
+    }
+
+    private static void fill() {
+        do {
+            Employee employee = new Employee();
+            System.out.println(INPUT_EMPLOYEE_NAME);
+            employee.setName(input.next());
+
+            System.out.println(INPUT_EMPLOYEE_SURNAME);
+            employee.setSurname(input.next());
+            input.nextLine();
+
+            System.out.println(INPUT_EMPLOYEE_RANK);
+            String nameOfRank = getExistingNameOfRank();
+            employee.setStatus(Rank.retRank(nameOfRank));
+
+            System.out.println(INPUT_EMPLOYEE_PROFIT);
+            employee.setProfit(input.nextInt());
+
+            listOfEmployees.add(employee);
+
+            System.out.println(INPUT_ENDING_CHAR);
+        } while (isNotEnding());
+    }
+
+    private static boolean isNotEnding() {
+        String charOfEnding = input.next();
+        while (charOfEnding.charAt(0) != 'Д' && charOfEnding.charAt(0) != 'Н') {
+            System.out.println(INPUT_NEW_ENDING_CHAR);
+            charOfEnding = input.next();
+        }
+        return charOfEnding.charAt(0) != 'Д';
+    }
+
+    private static void show() {
+        for (Employee element : listOfEmployees) {
+            System.out.println(INFORMATION_ABOUT_EMPLOYEE + element.toString());
+        }
+    }
+
+    private static void checkIfEmployeeExists() {
         int i = 1;
-        for (Employee element : list) {
-            System.out.println("Данные " + (i++) + " работника :\n\t" + element.getName() + " " + element.getSurname() + " " + element.getStatus().getName() + " " + element.getProfit());
-        }
+        System.out.println(INPUT_EMPLOYEE_RANK);
+
+        String nameOfRank = getExistingNameOfRank();
+
+        for (Employee element : listOfEmployees)
+            if (element.getStatus() == Rank.retRank(nameOfRank)) {
+                System.out.println(INFORMATION_ABOUT_EMPLOYEE + element.toString());
+                i++;
+            }
+        if (i == 1) System.out.println(NO_EMPLOYEES_ON_THIS_RANK);
     }
 
-    static void search(ArrayList<Employee> list) {
-        int i = 1;
-        System.out.println("Введите название должности");
-        in.nextLine();
-        String a = in.nextLine();
-        while(!Rank.isRankExits(a)) {
-            System.out.println("Такой должности нет " + a);
-            a = in.nextLine();
+    private static String getExistingNameOfRank() {
+        String nameOfRank = input.nextLine();
+        while (Rank.isNotRankExits(nameOfRank)) {
+            System.out.println(NOT_RANK + nameOfRank);
+            nameOfRank = input.nextLine();
         }
-        for (Employee element : list) {
-            if (element.getStatus() == Rank.retRank(a))
-                System.out.println("Данные " + (i++) + " работника, на данной сложности :\n\t" + element.getName() + " " + element.getSurname() + " " + element.getStatus().getName() + " " + element.getProfit());
-        }
-        if (i == 1) System.out.println("Сотрудников на данной должности нет");
+        return nameOfRank;
     }
 
-    static void sort(ArrayList<Employee> list) {
-        for (int i = 0; i < list.size() - 1; i++) {
-            for (int j = i + 1; j < list.size(); j++){
-                if (list.get(i).compareTo(list.get(j)) > 0) {
-                    Employee buf = list.get(j);
-                    list.set(j, list.get(i));
-                    list.set(i, buf);
+    private static void sort() {
+        for (int i = 0; i < listOfEmployees.size() - 1; i++)
+            for (int j = i + 1; j < listOfEmployees.size(); j++)
+                if (listOfEmployees.get(i).compareTo(listOfEmployees.get(j)) > 0) {
+                    swapEmployees(i, j);
                 }
-            }
-        }
+    }
+
+    private static void swapEmployees(int i, int j) {
+        Employee buffer = listOfEmployees.get(j);
+        listOfEmployees.set(j, listOfEmployees.get(i));
+        listOfEmployees.set(i, buffer);
     }
 }

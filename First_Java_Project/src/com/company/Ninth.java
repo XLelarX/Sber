@@ -3,16 +3,18 @@ package com.company;
 import java.util.Scanner;
 
 public class Ninth {
+    private static final Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        long n = in.nextInt(), s = 0, sn = 1;
+        long numberForCheck = input.nextInt();
+        long s = 0;
+        long sn = 1;
         System.out.println("0\n1");
-        for (long i = 2; i <= n; i++){
-            if (i%2 == 0) {
+        for (long i = 2; i <= numberForCheck; i++) {
+            if (i % 2 == 0) {
                 s += sn;
                 System.out.println(s);
-            }
-            else {
+            } else {
                 sn += s;
                 System.out.println(sn);
             }

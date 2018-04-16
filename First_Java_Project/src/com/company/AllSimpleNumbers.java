@@ -1,17 +1,19 @@
 package com.company;
 
-import java.util.Scanner;
+public class AllSimpleNumbers {
+    private static final int maxInteger = 100;
+    private static final int minInteger = 2;
 
-public class Eighth {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int a = 100;
-        for (int j = 1;j < a + 1 ;j++) {
+
+        for (int j = minInteger; j <= maxInteger; j++) {
             int i = j - 1;
+
             for (; i > 1; i--) {
                 if (j % i == 0 && i != j)
                     break;
             }
+
             if (i == 1)
                 System.out.println(j);
         }

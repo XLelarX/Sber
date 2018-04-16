@@ -39,15 +39,21 @@ class Employee implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
+    public String toString() {
+        return  "Имя : " + name +
+                ", Фамилия : " + surname +
+                ", Должность : " + status.getName() +
+                ", Зарплата : " + profit;
+    }
 
+    @Override
+    public int compareTo(Object o) {
         if (o instanceof Employee) {
             Employee second = (Employee) o;
-            if (this.surname.compareToIgnoreCase(second.getSurname()) == 0) {
+            if (this.surname.compareToIgnoreCase(second.getSurname()) == 0)
                 return this.profit - second.getProfit();
-            } else {
+            else
                 return this.surname.compareToIgnoreCase(second.getSurname());
-            }
         }
         return -1;
     }

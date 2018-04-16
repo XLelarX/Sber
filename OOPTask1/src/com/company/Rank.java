@@ -10,27 +10,30 @@ public enum Rank {
     TESTER("Тестировщик");
     private String name;
 
-    Rank(String name){
+    Rank(String name) {
         this.name = name;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public static boolean isRankExits(String rankName){
-        for (Rank element : values()){
-            if (rankName.equals(element.getName())){
-                return true;
+
+    public static boolean isNotRankExits(String rankName) {
+        for (Rank element : values()) {
+            if (rankName.equals(element.getName())) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
-    public static Rank retRank(String rankName){
-        for (Rank element : values()){
-        if (rankName.equals(element.getName())){
-            return element;
+    public static Rank retRank(String rankName) {
+        for (Rank element : values()) {
+            if (rankName.equals(element.getName())) {
+                return element;
+            }
         }
+        return null;
     }
-    return null;
-}
+
 }
