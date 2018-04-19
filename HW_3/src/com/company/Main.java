@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Triangle a = new Triangle(new Point(1, 2), new Point(2, 3), new Point(3, 6));
+
         a.show();
         System.out.println(a.getFirst().getLengthBetweenPoints(a.getSecond()));
         System.out.println(a.getSecond().getLengthBetweenPoints(a.getThird()));
