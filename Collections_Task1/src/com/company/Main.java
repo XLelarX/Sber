@@ -13,6 +13,7 @@ public class Main {
     private static final DequeUiHandler dequeHandler = new DequeUiHandler();
     private static final MapUiHandler mapHandler = new MapUiHandler();
     private static final SetUiHandler setHandler = new SetUiHandler();
+    private static FinalUiHandler finalUiHandler = new FinalUiHandler();
 
     public static void main(String[] args) {
         chooseType();
@@ -25,23 +26,23 @@ public class Main {
     private static void chooseType() {
         while (true) {
             showMenu();
-            int numberOfCommand = input.nextInt();
-            switch (numberOfCommand) {
-                case 1:
-                    listHandler.call();
-                    break;
-                case 2:
-                    setHandler.call();
-                    break;
-                case 3:
+            getHandler().call();
+        }
+    }
 
-                    break;
-                case 4:
-
-                    break;
-                case 5:
-                    return;
-            }
+    private static UiHandler getHandler() {
+        int numberOfCommand = input.nextInt();
+        switch (numberOfCommand) {
+            case 1:
+                return listHandler;
+            case 2:
+                return setHandler;
+            case 3:
+                return dequeHandler;
+            case 4:
+                return mapHandler;
+            default:
+                return finalUiHandler;
         }
     }
 }
