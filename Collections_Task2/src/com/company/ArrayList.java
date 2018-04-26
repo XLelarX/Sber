@@ -4,7 +4,12 @@ import java.util.Arrays;
 
 public class ArrayList implements List {
     private int size = 0;
-    private Object[] array;
+    Object[] array;
+
+    private ArrayList(Object[] array) {
+        this.array = array;
+        size = array.length;
+    }
 
     public ArrayList() {
         array = new Object[10];
@@ -26,60 +31,116 @@ public class ArrayList implements List {
 
     @Override
     public void add(Object item) {
-        while (size < array.length && array[size] != null)
-            size++;
-        if (size >= array.length) {
+        growAsNeeded();
+        array[size++] = item;
+    }
 
-            Object[] buffer = array;
-            this.size += this.size >> 1 + 1;
-            array = new Object[this.size];
-            System.arraycopy(buffer, 0, array, 0, buffer.length);
-//            array[i + 1] = item;
-//            for (int j = 0; j < array.length; j++)
-//                array[j] =
-        } else if (array[size] == null) {
-            array[size] = item;
-            ++this.size;
-        }
+    private void growAsNeeded() {
+        if (array.length <= size)
+            array = Arrays.copyOf(array, array.length + (array.length >> 1) + 1);
     }
 
     @Override
     public void add(int index, Object item) {
+        checkForRange(index);
 
+        size++;
+        growAsNeeded();
+
+        System.arraycopy(array, index, array, index + 1, size - index + 2);
+        array[index] = item;
     }
 
     @Override
     public Object get(int index) {
-        return null;
+        checkForRange(index);
+        return array[index];
+    }
+
+    private void checkForRange(int index) {
+        if ((index >= size) || (index < 0))
+            throw new IndexOutOfBoundsException(buildOutOfBoundsMessage(index));
+    }
+
+    private String buildOutOfBoundsMessage(int index) {
+        return "Index: " + index + ", Size: " + size;
     }
 
     @Override
     public int indexOf(Object obj) {
-        return 0;
+        if (obj == null)
+            for (int i = 0; i < size; i++) {
+                if (array[i] == null)
+                    return i;
+            }
+        else for (int i = 0; i < size; i++)
+            if (array[i].equals(obj))
+                return i;
+
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object obj) {
-        return 0;
+        if (obj == null)
+            for (int i = size - 1; i >= 0; i--) {
+                if (array[i] == null)
+                    return i;
+            }
+        else for (int i = size - 1; i >= 0; i--) {
+            if (array[i].equals(obj))
+                return i;
+        }
+
+        return -1;
     }
 
     @Override
     public void set(int index, Object item) {
-
+        checkForRange(index);
+        array[index] = item;
     }
 
     @Override
     public void remove(int index) {
-
+        checkForRange(index);
+        System.arraycopy(array, index + 1, array, index, size - index + 2);
+        size--;
     }
 
     @Override
     public void remove(Object item) {
+        if (item == null) {
+            for (int i = size - 1; i >= 0; i--) {
+                if (array[i] == null) {
+                    fastRemove(i);
+                    return;
+                }
+            }
+        } else for (int i = size - 1; i >= 0; i--) {
+            if (array[i].equals(item)) {
+                fastRemove(i);
+                return;
+            }
+        }
+    }
 
+    private void fastRemove(int i) {
+        System.arraycopy(array, i + 1, array, i, size - i + 2);
+        size--;
     }
 
     @Override
     public List subList(int from, int to) {
-        return null;
+        checkForSubRange(from, to);
+
+        Object subArray[] = new Object[to - from];
+        System.arraycopy(array, from, subArray, 0, to - from);
+        return new ArrayList(subArray);
+    }
+
+    private void checkForSubRange(int first, int second) {
+        if ((first >= size || first < 0) && (second >= size || second < 0) && (first > second))
+            throw new IndexOutOfBoundsException(buildOutOfBoundsMessage(first));
     }
 }
