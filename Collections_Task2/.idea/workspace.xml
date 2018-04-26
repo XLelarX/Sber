@@ -25,13 +25,13 @@
       <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/ArrayList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="139" column="5" lean-forward="false" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#263#264#0" expanded="true" />
                 <element signature="e#301#302#0" expanded="true" />
-                <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-                <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
+                <element signature="e#1390#1391#0" expanded="true" />
+                <element signature="e#1450#1451#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Node.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -70,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Deque.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Deque.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Deque.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -93,6 +93,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>outOfBoundsMessage</find>
+      <find>checkForRange</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -105,10 +106,10 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/company/List.java" />
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/company/ArrayList.java" />
         <option value="$PROJECT_DIR$/src/com/company/Deque.java" />
         <option value="$PROJECT_DIR$/src/com/company/Node.java" />
         <option value="$PROJECT_DIR$/src/com/company/LinkedList.java" />
+        <option value="$PROJECT_DIR$/src/com/company/ArrayList.java" />
       </list>
     </option>
   </component>
@@ -291,8 +292,8 @@
           <folding>
             <element signature="e#263#264#0" expanded="true" />
             <element signature="e#301#302#0" expanded="true" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -312,8 +313,8 @@
           <folding>
             <element signature="e#263#264#0" expanded="true" />
             <element signature="e#301#302#0" expanded="true" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -333,8 +334,8 @@
           <folding>
             <element signature="e#263#264#0" expanded="true" />
             <element signature="e#301#302#0" expanded="true" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -370,8 +371,8 @@
           <folding>
             <element signature="e#263#264#0" expanded="true" />
             <element signature="e#301#302#0" expanded="true" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -391,8 +392,8 @@
           <folding>
             <element signature="e#263#264#0" expanded="true" />
             <element signature="e#301#302#0" expanded="true" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -443,24 +444,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Deque.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="139" column="5" lean-forward="false" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
-          <folding>
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="method#indexOf#0;class#ArrayList#0" expanded="false" />
-            <element signature="method#checkForSubRange#0;class#ArrayList#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -485,10 +473,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Node.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="14" lean-forward="true" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Deque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
           <folding />
         </state>
       </provider>

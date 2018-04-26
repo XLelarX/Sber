@@ -36,19 +36,17 @@ public class ArrayList implements List {
     }
 
     private void growAsNeeded() {
-        if (array.length <= size)
+        if (array.length == size)
             array = Arrays.copyOf(array, array.length + (array.length >> 1) + 1);
     }
 
     @Override
     public void add(int index, Object item) {
         checkForRange(index);
-
-        size++;
         growAsNeeded();
-
-        System.arraycopy(array, index, array, index + 1, size - index + 2);
+        System.arraycopy(array, index, array, index + 1, size - index + 1);
         array[index] = item;
+        size++;
     }
 
     @Override
@@ -68,30 +66,29 @@ public class ArrayList implements List {
 
     @Override
     public int indexOf(Object obj) {
-        if (obj == null)
+        if (obj == null) {
             for (int i = 0; i < size; i++) {
                 if (array[i] == null)
                     return i;
             }
-        else for (int i = 0; i < size; i++)
+        } else for (int i = 0; i < size; i++) {
             if (array[i].equals(obj))
                 return i;
-
+        }
         return -1;
     }
 
     @Override
     public int lastIndexOf(Object obj) {
-        if (obj == null)
+        if (obj == null) {
             for (int i = size - 1; i >= 0; i--) {
                 if (array[i] == null)
                     return i;
             }
-        else for (int i = size - 1; i >= 0; i--) {
+        } else for (int i = size - 1; i >= 0; i--) {
             if (array[i].equals(obj))
                 return i;
         }
-
         return -1;
     }
 
@@ -139,8 +136,8 @@ public class ArrayList implements List {
         return new ArrayList(subArray);
     }
 
-    private void checkForSubRange(int first, int second) {
-        if ((first >= size || first < 0) && (second >= size || second < 0) && (first > second))
-            throw new IndexOutOfBoundsException(buildOutOfBoundsMessage(first));
+    private void checkForSubRange(int from, int to) {
+        if (!((from < to) && (from >= 0) && (to < size)))
+            throw new IndexOutOfBoundsException(buildOutOfBoundsMessage(from));
     }
 }
