@@ -1,7 +1,16 @@
 package com.company;
 
-public class Node {
+class Node {
     Object item;
-    Node next;
-    Node prev;
+    Node next = null;
+    Node prev = null;
+
+    public Node() {
+    }
+
+    Node(Object item, Node next, Node prev) {
+        this.item = item;
+        this.next = next;
+        this.prev = prev;
+    }
 }
