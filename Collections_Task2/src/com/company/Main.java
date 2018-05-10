@@ -3,12 +3,19 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        // java.util.LinkedList
-        LinkedList list = new LinkedList();
-        list.addFirst("add2");
+        LinkedList<String> list = new LinkedList<>();
+        //java.util.LinkedList
+        list.addLast("add2");
+        list.addFirst("add");
         list.addFirst("add3");
         list.addFirst("add");
-        System.out.println(list.getFirst());
-        System.out.println(list.indexOf("add"));
+        int count = 2;
+        System.out.println(list.get(count) + "\n");
+        list.remove(count);
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
+        System.out.println(list.get(3));
+
     }
 }

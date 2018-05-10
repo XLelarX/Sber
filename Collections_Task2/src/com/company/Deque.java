@@ -1,19 +1,19 @@
 package com.company;
 
-public interface Deque {
-    void addFirst(Object item);
+public interface Deque<T> {
+    void addFirst(T item);
 
-    void addLast(Object item);
+    void addLast(T item);
 
-    Object removeFirst();
+    T removeFirst();
 
-    Object removeLast();
+    T removeLast();
 
-    Object getFirst();
+    T getFirst();
 
-    Object getLast();
+    T getLast();
 
-    Object pollFirst();
+    T pollFirst();
 
-    Object pollLast();
+    T pollLast();
 }

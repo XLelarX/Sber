@@ -1,14 +1,14 @@
 package com.company;
 
-class Node {
-    Object item;
-    Node next = null;
-    Node prev = null;
+class Node<T> {
+    T item;
+    Node<T> next = null;
+    Node<T> prev = null;
 
     public Node() {
     }
 
-    Node(Object item, Node next, Node prev) {
+    Node(T item, Node<T> next, Node<T> prev) {
         this.item = item;
         this.next = next;
         this.prev = prev;

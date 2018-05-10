@@ -1,25 +1,25 @@
 package com.company;
 
-public interface List {
+public interface List<T> {
     boolean isEmpty();
 
     int size();
 
-    void add(Object item);
+    void add(T item);
 
-    void add(int index, Object item);
+    void add(int index, T item);
 
-    Object get(int index);
+    T get(int index);
 
-    int indexOf(Object obj);
+    int indexOf(T obj);
 
-    int lastIndexOf(Object obj);
+    int lastIndexOf(T obj);
 
-    void set(int index, Object item);
+    void set(int index, T item);
 
     void remove(int index);
 
-    void remove(Object item);
+    void remove(T item);
 
     List subList(int from, int to);
 

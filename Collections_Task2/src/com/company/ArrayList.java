@@ -2,21 +2,23 @@ package com.company;
 
 import java.util.Arrays;
 
-public class ArrayList implements List {
+public class ArrayList<T> implements List<T> {
     private int size = 0;
-    Object[] array;
+    private T[] array;
 
-    private ArrayList(Object[] array) {
+    private ArrayList(T[] array) {
         this.array = array;
         size = array.length;
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList() {
-        array = new Object[10];
+        array = (T[]) new Object[10];
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList(int initialSize) {
-        array = new Object[initialSize];
+        array = (T[]) new Object[initialSize];
     }
 
     @Override
@@ -30,7 +32,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void add(Object item) {
+    public void add(T item) {
         growAsNeeded();
         array[size++] = item;
     }
@@ -41,7 +43,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void add(int index, Object item) {
+    public void add(int index, T item) {
         checkForRange(index);
         growAsNeeded();
         System.arraycopy(array, index, array, index + 1, size - index + 1);
@@ -50,7 +52,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         checkForRange(index);
         return array[index];
     }
@@ -65,7 +67,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public int indexOf(Object obj) {
+    public int indexOf(T obj) {
         if (obj == null) {
             for (int i = 0; i < size; i++) {
                 if (array[i] == null)
@@ -79,7 +81,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public int lastIndexOf(Object obj) {
+    public int lastIndexOf(T obj) {
         if (obj == null) {
             for (int i = size - 1; i >= 0; i--) {
                 if (array[i] == null)
@@ -93,7 +95,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void set(int index, Object item) {
+    public void set(int index, T item) {
         checkForRange(index);
         array[index] = item;
     }
@@ -106,7 +108,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void remove(Object item) {
+    public void remove(T item) {
         if (item == null) {
             for (int i = size - 1; i >= 0; i--) {
                 if (array[i] == null) {
@@ -128,10 +130,11 @@ public class ArrayList implements List {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List subList(int from, int to) {
         checkForSubRange(from, to);
 
-        Object subArray[] = new Object[to - from];
+        T subArray[] = (T[]) new Object[to - from];
         System.arraycopy(array, from, subArray, 0, to - from);
         return new ArrayList(subArray);
     }
