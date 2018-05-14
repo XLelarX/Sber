@@ -1,5 +1,7 @@
 package com.company;
 
+import java.math.BigDecimal;
+
 public class O {
     private static void Init() {
         Text.Reset();
@@ -13,19 +15,19 @@ public class O {
     }
 
     public static void main(String[] args) {
-        double d = 1.0;
-        double f = 1.0F;
-        int i = 1;
-        long l = 1L;
-        System.out.println();
-        System.out.println(Integer.MAX_VALUE + "     " + Long.MAX_VALUE);
-        System.out.println("Компилятор языка Java");
-        if (args.length == 0)
-            Location.path = null;
-        else
-            Location.path = args[0];
-        O.Init();
-        Pars.Compile();
-        O.Done();
+        long l = 123L;
+        double d = 123.0;
+        System.out.println(Double.MAX_VALUE);
+
+        System.out.println(new BigDecimal(Double.MAX_VALUE));
+//        System.out.println(Integer.MAX_VALUE + "     " + Long.MAX_VALUE);
+//        System.out.println("Компилятор языка Java");
+//        if (args.length == 0)
+//            Location.path = null;
+//        else
+//            Location.path = args[0];
+//        O.Init();
+//        Pars.Compile();
+//        O.Done();
     }
 }
