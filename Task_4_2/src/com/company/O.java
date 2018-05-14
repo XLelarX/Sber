@@ -1,24 +1,29 @@
 package com.company;
 
 public class O {
-    static void Init() {
+    private static void Init() {
         Text.Reset();
-        if (!Text.Ok)
-            Error.Message(Text.Message);
+        if (!Text.ok)
+            Error.Message(Text.message);
         Scan.init();
     }
 
-    static void Done() {
+    private static void Done() {
         Text.Close();
     }
 
     public static void main(String[] args) {
-        System.out.println("\nКомпилятор языка");
-        System.out.println(args.length);
+        double d = 1.0;
+        double f = 1.0F;
+        int i = 1;
+        long l = 1L;
+        System.out.println();
+        System.out.println(Integer.MAX_VALUE + "     " + Long.MAX_VALUE);
+        System.out.println("Компилятор языка Java");
         if (args.length == 0)
-            Location.Path = null;
+            Location.path = null;
         else
-            Location.Path = args[0];
+            Location.path = args[0];
         O.Init();
         Pars.Compile();
         O.Done();

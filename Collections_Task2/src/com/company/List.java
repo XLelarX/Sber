@@ -1,12 +1,6 @@
 package com.company;
 
-public interface List<T> {
-    boolean isEmpty();
-
-    int size();
-
-    void add(T item);
-
+public interface List<T> extends Collection<T> {
     void add(int index, T item);
 
     T get(int index);
@@ -19,8 +13,5 @@ public interface List<T> {
 
     void remove(int index);
 
-    void remove(T item);
-
-    List subList(int from, int to);
-
+    List<T> subList(int from, int to);
 }

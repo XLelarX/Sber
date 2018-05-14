@@ -2,10 +2,14 @@ package com.company;
 
 class Pars {
     static void Compile() {
-        System.out.println(Scan.Lex);
+        int n = 0;
         while (Scan.Lex != 33) {
-            Scan.NextLex();
-            System.out.println(Scan.Lex);
+            Scan.nextLex();
+            n++;
         }
+
+        System.out.println();
+        System.out.println(n);
+
     }
 }

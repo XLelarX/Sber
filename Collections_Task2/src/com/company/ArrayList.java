@@ -1,8 +1,23 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayList<T> implements List<T> {
+    private class ListIterator implements Iterator<T> {
+        private int index;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public T next() {
+            return array[index];
+        }
+    }
+
     private int size = 0;
     private T[] array;
 
@@ -130,17 +145,22 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public List subList(int from, int to) {
+    public List<T> subList(int from, int to) {
         checkForSubRange(from, to);
 
+        //noinspection unchecked
         T subArray[] = (T[]) new Object[to - from];
         System.arraycopy(array, from, subArray, 0, to - from);
-        return new ArrayList(subArray);
+        return new ArrayList<>(subArray);
     }
 
     private void checkForSubRange(int from, int to) {
         if (!((from < to) && (from >= 0) && (to < size)))
             throw new IndexOutOfBoundsException(buildOutOfBoundsMessage(from));
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator();
     }
 }

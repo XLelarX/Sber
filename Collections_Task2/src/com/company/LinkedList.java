@@ -1,8 +1,22 @@
 package com.company;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<T> implements Deque<T>, List<T> {
+    private class ListIterator implements Iterator<T> {
+        private Node<T> current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            return current.item;
+        }
+    }
 
     private Node<T> first;
     private Node<T> last;
@@ -218,16 +232,22 @@ public class LinkedList<T> implements Deque<T>, List<T> {
         removeNode(getNode(index));
     }
 
-    private void removeNode(Node<T> removing) {
-        if (removing.prev != null)
-            removing.prev.next = removing.next;
-        else
-            first = removing.next;
+    private void removeNode(Node<T> current) {
+        Node<T> next = current.next;
+        Node<T> prev = current.prev;
 
-        if (removing.next != null)
-            removing.next.prev = removing.prev;
+        if (prev != null)
+            prev.next = next;
         else
-            last = removing.prev;
+            first = next;
+
+        if (next != null)
+            next.prev = prev;
+        else
+            last = prev;
+
+        //        current.item = null;
+        size--;
     }
 
     @Override
@@ -236,7 +256,32 @@ public class LinkedList<T> implements Deque<T>, List<T> {
     }
 
     @Override
-    public List subList(int from, int to) {
-        return null;
+    public List<T> subList(int from, int to) {
+        checkForRange(from, to);
+
+        LinkedList<T> sub = new LinkedList<>();
+        Node<T> first = getNode(from);
+
+        int length = to - from;
+
+        for (int i = from; i <= length; i++) {
+            sub.add(first.item);
+            first = first.next;
+        }
+
+        return sub;
+    }
+
+    private void checkForRange(int from, int to) {
+        checkForRange(from);
+        checkForRange(to);
+
+        if (to < from)
+            throw new NoSuchElementException();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator();
     }
 }

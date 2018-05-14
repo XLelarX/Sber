@@ -1,6 +1,7 @@
 package com.company;
 
-public interface Deque<T> {
+public interface Deque<T> extends Collection<T> {
+
     void addFirst(T item);
 
     void addLast(T item);
