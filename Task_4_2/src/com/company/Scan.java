@@ -811,6 +811,8 @@ class Scan {
     }
 
     static void init() {
+        nkw = 0;
+
         EnterKW("abstract", lexAbstract);
         EnterKW("assert", lexAssert);
         EnterKW("boolean", lexBoolean);
